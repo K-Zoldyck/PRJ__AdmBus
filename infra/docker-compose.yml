@@ -2,7 +2,7 @@
 version: '3'
 services:
   app_main:
-    container-name: front_end_admbus
+    container_name: front_end_admbus
     build: front/.
     environment:
       - DB_USER = admin
@@ -17,7 +17,7 @@ services:
       - app_network
 
   app_data:
-    container-name: backend_end_admbus
+    container_name: backend_end_admbus
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: live123
