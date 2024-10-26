@@ -2,22 +2,24 @@
 version: '3'
 services:
   app_main:
-    container_name: front_end_admbus
+    container_name: frontend_admbus
     build: front/.
     environment:
-      - DB_USER = admin
-      - DB_PASS = admin
-      - DB_NAME = adbus
-      - DB_HOST = app_data
+      - DB_USER=admin
+      - DB_PASS=admin
+      - DB_NAME=adbus
+      - DB_HOST=app_data
     ports:
       - "8080:80"
     deploy:
       replicas: 1
+    depends_on:
+      - app_data
     networks:
       - app_network
 
   app_data:
-    container_name: backend_end_admbus
+    container_name: backend_admbus
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: live123
