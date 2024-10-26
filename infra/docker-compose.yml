@@ -1,0 +1,30 @@
+
+version: '3'
+services:
+  app_main:
+    build: front/.
+    environment:
+      - DB_USER = admin
+      - DB_PASS = admin
+      - DB_NAME = adbus
+      - DB_HOST = app_data
+    ports:
+      - "8080:80"
+    deploy:
+      replicas: 1
+    networks:
+      - app_network
+
+  app_data:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: live123
+      MYSQL_DATABASE: adbus
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
